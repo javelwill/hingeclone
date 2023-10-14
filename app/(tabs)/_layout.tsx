@@ -6,10 +6,11 @@ import {
   PersonIcon,
   StarIcon,
 } from '@/constants/icons';
-import {Tabs} from 'expo-router';
+import {Redirect, Tabs} from 'expo-router';
 import React from 'react';
 
 const TabLayout = () => {
+  return <Redirect href="/(auth)/sign-in" />;
   return (
     <Tabs
       screenOptions={({route}) => ({

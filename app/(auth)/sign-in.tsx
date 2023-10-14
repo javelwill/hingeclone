@@ -5,6 +5,7 @@ import VideoBackground from '@/components/video-background';
 import {HingeLogo} from '@/constants/icons';
 import {colors} from '@/constants/colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import Spacer from '@/components/spacer';
 
 const SignInScreen = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -20,6 +21,7 @@ const SignInScreen = () => {
   return (
     <VideoBackground source={require('@/assets/videos/background.mp4')}>
       <SafeAreaView style={styles.content}>
+        <Spacer size={130} />
         <HingeLogo fill={colors.white} width={140} height={70} />
       </SafeAreaView>
     </VideoBackground>

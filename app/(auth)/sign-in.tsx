@@ -107,7 +107,7 @@ const SignInScreen = () => {
         <Spacer size={10} />
         <Btn backgroundColor="transparent" onPress={handleSignIn}>
           <Type variant="bodyBold" color="white">
-            Sign in
+            {isSigningIn ? 'Back' : 'Sign in'}
           </Type>
         </Btn>
       </SafeAreaView>

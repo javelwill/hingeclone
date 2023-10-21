@@ -1,14 +1,10 @@
-import {StyleSheet, Text, View} from 'react-native';
+import {useLocalSearchParams} from 'expo-router';
 import React from 'react';
+import {WebView} from 'react-native-webview';
 
 const HelpCenterScreen = () => {
-  return (
-    <View>
-      <Text>HelpCenterScreen</Text>
-    </View>
-  );
+  const {url} = useLocalSearchParams<{url: string}>();
+  return <WebView source={{uri: url}} />;
 };
 
 export default HelpCenterScreen;
-
-const styles = StyleSheet.create({});

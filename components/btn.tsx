@@ -1,7 +1,7 @@
 import {Pressable, StyleSheet, Text, View} from 'react-native';
 import React, {useMemo} from 'react';
 import {MotiPressable} from 'moti/interactions';
-import {colors} from '@/constants/colors';
+import {colors} from '@/constants/Colors';
 
 type BtnProps = {
   onPress?: () => void;

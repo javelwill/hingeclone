@@ -1,4 +1,4 @@
-import {colors} from '@/constants/colors';
+import {colors} from '@/constants/Colors';
 import {typography} from '@/constants/typography';
 import React from 'react';
 import {Text, TextStyle} from 'react-native';

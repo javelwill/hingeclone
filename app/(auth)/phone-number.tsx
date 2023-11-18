@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import React from 'react';
 import {ChevronRightIcon, DotIcon, PhoneIcon} from '@/constants/icons';
-import {colors} from '@/constants/colors';
+import {colors} from '@/constants/Colors';
 import Spacer from '@/components/spacer';
 import Type from '@/components/type';
 import PhoneInput from '@/components/phone-input';

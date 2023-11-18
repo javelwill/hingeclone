@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 import {router} from 'expo-router';
 import VideoBackground from '@/components/video-background';
 import {AppleIcon, FacebookfIcon, HingeLogo} from '@/constants/icons';
-import {colors} from '@/constants/colors';
+import {colors} from '@/constants/Colors';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import Spacer from '@/components/spacer';
 import Type from '@/components/type';

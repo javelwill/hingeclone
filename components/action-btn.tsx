@@ -1,4 +1,4 @@
-import {colors} from '@/constants/colors';
+import {colors} from '@/constants/Colors';
 import {MotiPressable} from 'moti/interactions';
 import React, {useMemo} from 'react';
 import {StyleSheet} from 'react-native';

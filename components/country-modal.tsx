@@ -5,6 +5,7 @@ import {
   SectionList,
   StyleSheet,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import React from 'react';
@@ -12,7 +13,6 @@ import Type from './type';
 import {CloseIcon} from '@/constants/icons';
 import {colors} from '@/constants/colors';
 import {countries} from '@/constants/countries';
-import {TouchableOpacity} from 'react-native-gesture-handler';
 import {Country} from '@/constants/types';
 import Spacer from './spacer';
 

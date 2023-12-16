@@ -25,6 +25,7 @@
     "expo-status-bar": "~1.6.0",
     "expo-system-ui": "~2.4.0",
     "expo-web-browser": "~12.3.2",
+    "libphonenumber-js": "^1.10.51",
     "moti": "^0.27.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",

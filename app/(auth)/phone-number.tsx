@@ -5,7 +5,7 @@ import {
   Text,
   View,
 } from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import {ChevronRightIcon, DotIcon, PhoneIcon} from '@/constants/icons';
 import {colors} from '@/constants/colors';
 import Spacer from '@/components/spacer';
@@ -16,6 +16,12 @@ import {links} from '@/constants/links';
 import ActionBtn from '@/components/action-btn';
 
 const PhoneNumberScreen = () => {
+  const [phoneNumber, setPhoneNumber] = useState({
+    dialCode: '',
+    nationalNumber: '',
+    code: '',
+  });
+
   return (
     <>
       <View style={styles.content}>
@@ -27,7 +33,7 @@ const PhoneNumberScreen = () => {
         <Spacer size={10} />
         <Type variant="displayLarge">What's your phone number?</Type>
         <Spacer size={70} />
-        <PhoneInput />
+        <PhoneInput onChangeNumber={setPhoneNumber} />
         <Spacer size={10} />
         <Type variant="bodySmall" color="grey2">
           Hinge will send you a text with a verification code. Message and data

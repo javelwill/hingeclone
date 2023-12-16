@@ -1,5 +1,5 @@
 import {colors} from '@/constants/colors';
-import React, {useState} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {Pressable, StyleSheet, Text, TextInput, View} from 'react-native';
 import Type from './type';
 import {ChevronDownIcon} from '@/constants/icons';
@@ -7,10 +7,26 @@ import {countries} from '@/constants/countries';
 import {typography} from '@/constants/typography';
 import CountryModal from './country-modal';
 import {Country} from '@/constants/types';
+import {
+  AsYouType,
+  validatePhoneNumberLength,
+  CountryCode,
+} from 'libphonenumber-js';
+import {useFocusEffect} from 'expo-router';
 
-const PhoneInput = () => {
+type PhoneInputProps = {
+  onChangeNumber: (number: {
+    dialCode: string;
+    nationalNumber: string;
+    code: string;
+  }) => void;
+};
+
+const PhoneInput = ({onChangeNumber}: PhoneInputProps) => {
   const [country, setCountry] = useState(countries[0]);
   const [modalVisible, setModalVisible] = useState(false);
+  const [nationalNumber, setNationalNumber] = useState('');
+  const inputRef = useRef<TextInput>(null);
 
   const handleToggleModal = () => {
     setModalVisible(!modalVisible);
@@ -21,7 +37,33 @@ const PhoneInput = () => {
     handleToggleModal();
   };
 
-  const {flag, dialCode} = country;
+  const handleChangeText = (text: string) => {
+    const inValid =
+      validatePhoneNumberLength(
+        new AsYouType().input(dialCode + text).replace(dialCode, ''),
+        code as CountryCode
+      ) === 'TOO_LONG';
+
+    if (inValid) {
+      return;
+    }
+
+    setNationalNumber(
+      new AsYouType().input(dialCode + text).replace(dialCode, '')
+    );
+  };
+
+  useEffect(() => {
+    onChangeNumber({dialCode, nationalNumber, code});
+  }, [nationalNumber, country]);
+
+  useFocusEffect(() => {
+    setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+  });
+
+  const {flag, dialCode, code} = country;
   return (
     <>
       <CountryModal
@@ -44,6 +86,9 @@ const PhoneInput = () => {
           inputMode="numeric"
           textContentType="telephoneNumber"
           autoFocus
+          value={nationalNumber}
+          onChangeText={handleChangeText}
+          ref={inputRef}
         ></TextInput>
       </View>
     </>

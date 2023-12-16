@@ -6,6 +6,7 @@ import {ChevronDownIcon} from '@/constants/icons';
 import {countries} from '@/constants/countries';
 import {typography} from '@/constants/typography';
 import CountryModal from './country-modal';
+import {Country} from '@/constants/types';
 
 const PhoneInput = () => {
   const [country, setCountry] = useState(countries[0]);
@@ -15,14 +16,23 @@ const PhoneInput = () => {
     setModalVisible(!modalVisible);
   };
 
+  const handleChangeCountry = (country: Country) => {
+    setCountry(country);
+    handleToggleModal();
+  };
+
   const {flag, dialCode} = country;
   return (
     <>
-      <CountryModal visible={modalVisible} onClose={handleToggleModal} />
+      <CountryModal
+        visible={modalVisible}
+        onClose={handleToggleModal}
+        onSelectCountry={handleChangeCountry}
+      />
       <View style={styles.container}>
         <Pressable onPress={handleToggleModal}>
           <View style={styles.countryContainer}>
-            <Text style={styles.flag}>{flag}</Text>
+            {dialCode.length <= 3 && <Text style={styles.flag}>{flag}</Text>}
             <Type variant="displayMedium">{dialCode}</Type>
             <ChevronDownIcon width={15} height={15} />
           </View>

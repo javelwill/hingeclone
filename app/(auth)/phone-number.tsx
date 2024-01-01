@@ -1,19 +1,13 @@
-import {
-  KeyboardAvoidingView,
-  Platform,
-  StyleSheet,
-  Text,
-  View,
-} from 'react-native';
-import React, {useState} from 'react';
-import {ChevronRightIcon, DotIcon, PhoneIcon} from '@/constants/icons';
-import {colors} from '@/constants/colors';
+import ActionBtn from '@/components/action-btn';
+import PhoneInput from '@/components/phone-input';
 import Spacer from '@/components/spacer';
 import Type from '@/components/type';
-import PhoneInput from '@/components/phone-input';
-import {Link} from 'expo-router';
+import {colors} from '@/constants/colors';
+import {ChevronRightIcon, DotIcon, PhoneIcon} from '@/constants/icons';
 import {links} from '@/constants/links';
-import ActionBtn from '@/components/action-btn';
+import {Link, router} from 'expo-router';
+import React, {useState} from 'react';
+import {KeyboardAvoidingView, Platform, StyleSheet, View} from 'react-native';
 
 const PhoneNumberScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState({
@@ -21,6 +15,15 @@ const PhoneNumberScreen = () => {
     nationalNumber: '',
     code: '',
   });
+
+  const isValid = phoneNumber.nationalNumber.length >= 3;
+
+  const handleSubmit = () => {
+    router.push({
+      pathname: '/(auth)/verification-code',
+      params: phoneNumber,
+    });
+  };
 
   return (
     <>
@@ -33,7 +36,7 @@ const PhoneNumberScreen = () => {
         <Spacer size={10} />
         <Type variant="displayLarge">What's your phone number?</Type>
         <Spacer size={70} />
-        <PhoneInput onChangeNumber={setPhoneNumber} />
+        <PhoneInput onChangeInput={setPhoneNumber} />
         <Spacer size={10} />
         <Type variant="bodySmall" color="grey2">
           Hinge will send you a text with a verification code. Message and data
@@ -59,8 +62,16 @@ const PhoneNumberScreen = () => {
         behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
         keyboardVerticalOffset={100}
       >
-        <ActionBtn backgroundColor="lightGrey2">
-          <ChevronRightIcon height={32} width={32} fill={colors.grey2} />
+        <ActionBtn
+          onPress={handleSubmit}
+          disabled={!isValid}
+          backgroundColor={isValid ? 'primaryDark' : 'lightGrey2'}
+        >
+          <ChevronRightIcon
+            height={32}
+            width={32}
+            fill={isValid ? colors.white : colors.grey2}
+          />
         </ActionBtn>
       </KeyboardAvoidingView>
     </>
@@ -83,5 +94,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'flex-end',
     padding: 20,
+    zIndex: -1,
   },
 });

@@ -9,6 +9,7 @@ type ActionBtnProps = {
   size?: number;
   style?: any;
   children: React.ReactNode;
+  disabled?: boolean;
 };
 
 const ActionBtn = ({
@@ -17,9 +18,11 @@ const ActionBtn = ({
   size = 52,
   style,
   children,
+  disabled = false,
 }: ActionBtnProps) => {
   return (
     <MotiPressable
+      disabled={disabled}
       onPress={onPress}
       style={[
         {

@@ -15,14 +15,14 @@ import {
 import {useFocusEffect} from 'expo-router';
 
 type PhoneInputProps = {
-  onChangeNumber: (number: {
+  onChangeInput: (number: {
     dialCode: string;
     nationalNumber: string;
     code: string;
   }) => void;
 };
 
-const PhoneInput = ({onChangeNumber}: PhoneInputProps) => {
+const PhoneInput = ({onChangeInput}: PhoneInputProps) => {
   const [country, setCountry] = useState(countries[0]);
   const [modalVisible, setModalVisible] = useState(false);
   const [nationalNumber, setNationalNumber] = useState('');
@@ -54,7 +54,7 @@ const PhoneInput = ({onChangeNumber}: PhoneInputProps) => {
   };
 
   useEffect(() => {
-    onChangeNumber({dialCode, nationalNumber, code});
+    onChangeInput({dialCode, nationalNumber, code});
   }, [nationalNumber, country]);
 
   useFocusEffect(() => {
@@ -107,6 +107,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderBottomColor: colors.black,
     borderBottomWidth: 1,
+    height: 50,
   },
   flag: {
     fontSize: 28,

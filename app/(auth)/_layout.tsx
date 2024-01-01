@@ -26,6 +26,19 @@ const AuthLayout = () => {
         }}
       />
       <Stack.Screen
+        name="verification-code"
+        options={{
+          headerBackVisible: false,
+          headerTitle: '',
+          headerRight: () => (
+            <Pressable onPress={router.back}>
+              <CloseIcon />
+            </Pressable>
+          ),
+          headerShadowVisible: false,
+        }}
+      />
+      <Stack.Screen
         name="help-center"
         options={{
           headerBackVisible: false,

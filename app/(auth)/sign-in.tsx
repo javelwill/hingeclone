@@ -10,6 +10,7 @@ import Type from '@/components/type';
 import {A} from '@expo/html-elements';
 import {links} from '@/constants/links';
 import Btn from '@/components/btn';
+import {StatusBar} from 'expo-status-bar';
 
 const SignInScreen = () => {
   const [isSigningIn, setIsSigningIn] = useState(false);
@@ -24,6 +25,7 @@ const SignInScreen = () => {
 
   return (
     <VideoBackground source={require('@/assets/videos/background.mp4')}>
+      <StatusBar style="light" />
       <SafeAreaView style={styles.content}>
         <View style={styles.branding}>
           <Spacer size={130} />

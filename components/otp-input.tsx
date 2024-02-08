@@ -78,8 +78,8 @@ const styles = StyleSheet.create({
   input: {
     position: 'absolute',
     opacity: 0,
-    height: 0,
-    width: 0,
+    height: 1,
+    width: 1,
   },
   box: {
     borderBottomColor: colors.black,
